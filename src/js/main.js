@@ -21,5 +21,16 @@ window.addEventListener('DOMContentLoaded', () =>{
     hideTabContent();
     showTabContent ();
 
+    tabNameListPather.addEventListener('click', (event) => {
+        const target = event.target; 
+        if(target && event.target.matches('.tabheader__item')) {
+            tabNameList.forEach((item, i)=> {
+                if (target === item) {
+                    hideTabContent();
+                    showTabContent (i);
+                }
+            });
+        }
+    });
   
 });
