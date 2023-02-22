@@ -38,12 +38,18 @@ window.addEventListener("DOMContentLoaded", () => {
     let intialTime = "2023-12-31";
 
     function getTimeRemaining(endTime) {
+        let days, hours, minutes, seconds;
         const total = Date.parse(endTime) - Date.parse(new Date());
-
-        const days = Math.floor((total / (1000 * 60 * 60 * 24))),
-            hours = Math.floor((total / (1000 * 60 * 60) % 24)),
-            minutes = Math.floor((total / (1000 * 60) % 60)),
+        if (total <= 0) {
+            [days, hours, minutes, seconds] = [0, 0, 0, 0];
+        } else {
+            days = Math.floor((total / (1000 * 60 * 60 * 24)));
+            hours = Math.floor((total / (1000 * 60 * 60) % 24));
+            minutes = Math.floor((total / (1000 * 60) % 60));
             seconds = Math.floor((total / 1000) % 60);
+        }
+
+            
 
         const timerData = { total, days, hours, minutes, seconds };
 
