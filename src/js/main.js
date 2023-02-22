@@ -43,13 +43,11 @@ window.addEventListener("DOMContentLoaded", () => {
         if (total <= 0) {
             [days, hours, minutes, seconds] = [0, 0, 0, 0];
         } else {
-            days = Math.floor((total / (1000 * 60 * 60 * 24)));
-            hours = Math.floor((total / (1000 * 60 * 60) % 24));
-            minutes = Math.floor((total / (1000 * 60) % 60));
+            days = Math.floor(total / (1000 * 60 * 60 * 24));
+            hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+            minutes = Math.floor((total / (1000 * 60)) % 60);
             seconds = Math.floor((total / 1000) % 60);
         }
-
-            
 
         const timerData = { total, days, hours, minutes, seconds };
 
@@ -84,8 +82,26 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
         updateClock(); // сразу вызываем, чтобы не было видно подгрузки
-       
     }
-
     setClock(".timer", intialTime);
+
+    //Module window
+    let btnOpenModal = document.querySelectorAll('[data-open]'),
+        modal = document.querySelector('.modal'),
+        modelClose = document.querySelector('[data-close]');
+
+    btnOpenModal.forEach(el=> {
+        el.addEventListener('click', ()=>{
+        modal.classList.add('show')
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'hidden'
+    })})
+
+    modelClose.addEventListener('click', ()=>{
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = 'visible'
+    })
+
+    
 });
